@@ -8,5 +8,19 @@
     <h1>Hello World</h1>
     <p>This is my first HTML Web Page</p>
     <button onclick="alert('Hello World!')">Click Me!</button>
+    <script>
+        async function sumNumbers() {
+            const a = prompt("Nhập số a:");
+            const b = prompt("Nhập số b:");
+            if (a === null || b === null) return;
+            const response = await fetch('http://localhost:5000/sum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ a: Number(a), b: Number(b) })
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = "Tổng là: " + data.sum;
+        }
+    </script>
 </body>
 </html>
